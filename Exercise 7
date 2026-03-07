@@ -1,0 +1,25 @@
+ /* 7. List of Products
+
+You will receive an array of products. Print a numbered array of all the products ordered by name.
+Example
+Input Output
+['Potatoes', 'Tomatoes', 'Onions', 'Apples'] 1.Apples 2.Onions 3.Potatoes 4.Tomatoes
+['Watermelon', 'Banana', 'Apples'] 1.Apples'Potatoes', 'Tomatoes', 'Onions', 'Apples'] 2.Banana 3.Watermelon
+
+Hints
+· The sort function rearranges the array in ascending order
+· Finally, we have to print our sorted array. To do that we loop through the array
+· We use i + 1, because we want to start counting from 1  */
+
+
+function arrOfProducts(products){
+
+   products.sort();
+   for (let i = 0; i < products.length; i++){
+    products[i] = `${i+1}.${products[i] }`;
+    console.log(products[i]);
+   }
+}
+
+arrOfProducts(['Potatoes', 'Tomatoes', 'Onions', 'Apples']);
+arrOfProducts(['Watermelon', 'Banana', 'Apples']);
