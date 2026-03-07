@@ -25,38 +25,31 @@ First, we receive the whole input:
 
 function arrayManipulations (arrWithInstructions){
 
-   let newArr = arrWithInstructions[0].split(' ');
+   let arrOfNumbers = arrWithInstructions[0].split(' '); //newArr
 
-   let addElement = arrWithInstructions[1].split(' ');
-   newArr.push(addElement[addElement.length-1]);
+   for (let i = 1; i < arrWithInstructions.length; i++){
+      let instructions = arrWithInstructions[i].split(' ');
+      let command = instructions[0];
+      let execution = instructions[1];
 
-   let removeElement = arrWithInstructions[2].split(' ');
-   let newArrWithRemovedElement = [];
-   for (let element of newArr){
-      if ( element != removeElement[1]){
-      newArrWithRemovedElement.push(element);
+      switch (command){
+         case 'Add':
+            arrOfNumbers.push(execution);
+            break;
+         case 'Remove': 
+            while (arrOfNumbers.includes(execution)){
+            arrOfNumbers.splice(arrOfNumbers.indexOf(execution), 1);
+            }
+            break;
+         case 'RemoveAt':
+            arrOfNumbers.splice(execution, 1);
+            break;
+         case 'Insert':
+            arrOfNumbers.splice(instructions[2], 0, execution);
+            break;
       }
-
    }
-   let newArrWithRemovedIndexElement = [];
-   let removeIndexElement = arrWithInstructions[3].split(' ');
-   for (let y = 0; y < newArrWithRemovedElement.length; y++){
-      if (y !== Number(removeIndexElement[1])){
-         newArrWithRemovedIndexElement.push(newArrWithRemovedElement[y]);
-      }
-   }
-
-   let insertElement = arrWithInstructions[4].split(' ');
-   let finalArr = [];
-   for (let z = 0; z < newArrWithRemovedIndexElement.length; z++){
-
-      if (z == insertElement[2]){
-         finalArr.push(insertElement[1]);
-      } 
-      finalArr.push(newArrWithRemovedIndexElement[z]);
-
-   }
-   console.log(finalArr.join(' '));
+   console.log(arrOfNumbers.join(' '));
    }
 
 arrayManipulations(['4 19 2 53 6 43', 'Add 3', 'Remove 2', 'RemoveAt 1', 'Insert 8 3']);
